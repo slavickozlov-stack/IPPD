@@ -308,7 +308,12 @@ export function extractIppd(doc: DocModel, fileId: string, templates: IppdTempla
   const regValue = regP?.text.match(regRe)?.[0].replace(/\s+/g, '') ?? null
   const loc = (p?: { index: number; text: string }): SourceLocation | undefined =>
     p ? { file: doc.fileName, section: 'Титульный лист', paragraph: p.index, excerpt: p.text.slice(0, 160) } : undefined
-  const nameP = head.find((p) => /^[А-ЯЁ][а-яё-]+\s+[А-ЯЁ][а-яё]+\s+[А-ЯЁ][а-яё]+(вич|вна|ича|вны|ична|ичны|оглы|кызы)\s*$/.test(p.text.trim()))
+  // ФИО: строка вида «Фамилия Имя Отчество»; иначе — по месту в форме прил. В: строка между
+  // «Индивидуальная программа подготовки» и «на должность …»
+  const titleIdx = head.findIndex((p) => /^индивидуальн[а-яё]*\s+программ[а-яё]*\s+подготовки\s*$/i.test(p.text.trim()))
+  const nameP =
+    head.find((p) => /^[А-ЯЁ][а-яё-]+\s+[А-ЯЁ][а-яё]+\s+[А-ЯЁ][а-яё]+(вич|вна|ича|вны|ична|ичны|оглы|кызы)\s*$/.test(p.text.trim())) ??
+    (titleIdx >= 0 && head[titleIdx + 2] && /^на\s+должность/i.test(head[titleIdx + 2].text.trim()) ? head[titleIdx + 1] : undefined)
   const posIdx = head.findIndex((p) => /^на\s+должность/i.test(p.text.trim()))
   let position: string | null = null
   if (posIdx >= 0) {
