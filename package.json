@@ -14,7 +14,7 @@
     "test": "vitest run",
     "demo:generate": "tsx scripts/make-demo.ts",
     "cli": "tsx scripts/cli.ts",
-    "e2e": "npm run build && node e2e/smoke.mjs",
+    "e2e": "npm run build && node e2e/smoke.mjs && node e2e/theme.mjs",
     "dist": "npm run build && electron-builder --dir",
     "schema": "tsx scripts/write-schema.ts",
     "demo:pdf": "electron scripts/make-umm-pdf.cjs"

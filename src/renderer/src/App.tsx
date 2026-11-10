@@ -6,6 +6,7 @@ import type { ClientBundle, FileEntry, ProfileSummary } from '../../shared/api'
 import { LoadStep } from './steps/LoadStep'
 import { ReviewStep } from './steps/ReviewStep'
 import { RunStep } from './steps/RunStep'
+import { THEME_LABEL, applyTheme, savedTheme, type Theme } from './theme'
 import { ReportStep } from './steps/ReportStep'
 
 const STEPS = ['Загрузка файлов', 'Сверка извлечённых данных', 'Запуск проверки', 'Отчёт']
@@ -24,6 +25,11 @@ export interface AppState {
 
 export function App() {
   const [step, setStep] = useState(0)
+  const [theme, setTheme] = useState<Theme>(savedTheme)
+  const chooseTheme = (t: Theme) => {
+    applyTheme(t)
+    setTheme(t)
+  }
   const [busy, setBusy] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [s, setS] = useState<AppState>({
@@ -77,6 +83,7 @@ export function App() {
             <div className="subtitle">Актуальность УММ и нормоконтроль индивидуальной программы подготовки</div>
           </div>
         </div>
+        <div className="top-right">
         <nav className="steps" aria-label="Шаги">
           {STEPS.map((name, i) => (
             <button key={name} className={`step ${i === step ? 'active' : ''} ${i < step ? 'done' : ''}`} disabled={!canGo(i) || !!busy} onClick={() => setStep(i)}>
@@ -85,6 +92,14 @@ export function App() {
             </button>
           ))}
         </nav>
+        <div className="theme-switch" role="group" aria-label="Тема оформления">
+          {(Object.keys(THEME_LABEL) as Theme[]).map((t) => (
+            <button key={t} aria-pressed={theme === t} onClick={() => chooseTheme(t)}>
+              {THEME_LABEL[t]}
+            </button>
+          ))}
+        </div>
+        </div>
       </header>
       {error && (
         <div className="alert error" role="alert">

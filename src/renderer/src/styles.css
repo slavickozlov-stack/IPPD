@@ -16,10 +16,31 @@
   --info-bg: #e8f0fb;
   --demo-bg: #fff3cd;
   --demo-fg: #5c4400;
-  color-scheme: light dark;
+  color-scheme: light;
+}
+/* Тёмная тема: по выбору «Тёмная» или «Как в системе» при тёмной теме macOS/Windows */
+:root[data-theme='dark'] {
+  --bg: #12161b;
+  --panel: #1a1f26;
+  --fg: #e6e9ee;
+  --muted: #9aa5b3;
+  --line: #2c333c;
+  --soft: #222831;
+  --accent: #6ea2ff;
+  --accent-fg: #0b1220;
+  --ok: #5cc47f;
+  --ok-bg: #16281d;
+  --bad: #ff8a80;
+  --bad-bg: #2d1817;
+  --warn: #f0b35a;
+  --warn-bg: #2b2213;
+  --info-bg: #17233a;
+  --demo-bg: #3a3014;
+  --demo-fg: #f5d77a;
+  color-scheme: dark;
 }
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root[data-theme='system'] {
     --bg: #12161b;
     --panel: #1a1f26;
     --fg: #e6e9ee;
@@ -37,8 +58,10 @@
     --info-bg: #17233a;
     --demo-bg: #3a3014;
     --demo-fg: #f5d77a;
+    color-scheme: dark;
   }
 }
+:root[data-theme='light'] { color-scheme: light; }
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; }
 body { background: var(--bg); color: var(--fg); font: 14px/1.45 -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; }
@@ -143,3 +166,9 @@ ul.checks { margin: 4px 0; padding-left: 18px; }
 .c-problem { color: var(--bad); }
 .c-unknown { color: var(--warn); }
 details summary { cursor: pointer; color: var(--accent); margin-top: 4px; }
+
+.theme-switch { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.theme-switch button { border: none; border-radius: 0; background: transparent; color: var(--muted); padding: 4px 10px; font-size: 12px; }
+.theme-switch button + button { border-left: 1px solid var(--line); }
+.theme-switch button[aria-pressed='true'] { background: var(--accent); color: var(--accent-fg); font-weight: 600; }
+.top-right { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
