@@ -1,0 +1,15 @@
+{
+  "$schema": "../schemas/profile.schema.json",
+  "schemaVersion": 1,
+  "id": "work-empty",
+  "name": "Рабочий профиль (пустой)",
+  "version": "0.0.1",
+  "mode": "work",
+  "description": "Пустой рабочий профиль: ни одна проверка не настроена. Отчёт покажет, какие проверки нужно настроить.",
+  "templates": [
+    "ippd-roaes-p0010"
+  ],
+  "checkPrimarySources": false,
+  "actuality": {},
+  "rules": []
+}

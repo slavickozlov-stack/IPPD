@@ -1,0 +1,796 @@
+{
+  "$schema": "../schemas/profile.schema.json",
+  "schemaVersion": 1,
+  "id": "demo",
+  "name": "ДЕМО: синтетический профиль для демонстрационного комплекта",
+  "version": "1.1.0",
+  "mode": "demo",
+  "description": "Демонстрационный профиль. Все правила и настройки помечены как ДЕМО и не являются утверждёнными правилами предприятия. Используется только с синтетическим комплектом demo/.",
+  "templates": [
+    "ippd-roaes-p0010"
+  ],
+  "checkPrimarySources": false,
+  "actuality": {
+    "validToInclusive": {
+      "value": true,
+      "approval": "demo",
+      "source": {
+        "document": "ДЕМО",
+        "clause": "граничный день",
+        "note": "последний день действия включается — допущение для демонстрации"
+      }
+    },
+    "validFromInclusive": {
+      "value": true,
+      "approval": "demo",
+      "source": {
+        "document": "ДЕМО",
+        "clause": "граничный день",
+        "note": "день введения в действие — первый день действия"
+      }
+    },
+    "reviewDueInclusive": {
+      "value": true,
+      "approval": "demo",
+      "source": {
+        "document": "ДЕМО",
+        "clause": "граничный день",
+        "note": "в день срока пересмотра просрочки ещё нет"
+      }
+    },
+    "reviewPeriodFromApproval": {
+      "value": {
+        "years": 5
+      },
+      "approval": "demo",
+      "source": {
+        "document": "ДЕМО",
+        "clause": "срок пересмотра",
+        "note": "5 лет от даты утверждения по аналогии с П.00.10 п. 10.5 для ППД — для УММ не подтверждено"
+      }
+    },
+    "revisionSelection": {
+      "value": "single-in-force",
+      "approval": "demo",
+      "source": {
+        "document": "ДЕМО",
+        "clause": "выбор редакции",
+        "note": "если редакция не указана — единственная действующая на дату"
+      }
+    },
+    "sourcePriority": {
+      "value": "umm-file",
+      "approval": "demo",
+      "source": {
+        "document": "ДЕМО",
+        "clause": "приоритет источников",
+        "note": "как в ответе специалиста УТП от 10.11.2026: главнее УММ"
+      }
+    },
+    "statusAsOfPolicy": null,
+    "newerEditionPolicy": {
+      "value": "replaced",
+      "approval": "demo",
+      "source": {
+        "document": "ДЕМО",
+        "clause": "новая редакция",
+        "note": "как в ответе специалиста УТП от 10.11.2026: новый УММ — новый номер"
+      }
+    }
+  },
+  "rules": [
+    {
+      "id": "NC-01",
+      "title": "Лист согласования",
+      "template": "ippd-roaes-p0010",
+      "section": "Состав ИППД",
+      "requirement": "В состав ИППД должен быть включён: лист согласования.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.9 б",
+        "page": "11"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "sections",
+      "check": {
+        "type": "paragraph_present",
+        "pattern": "лист\\s+согласования",
+        "description": "лист согласования"
+      }
+    },
+    {
+      "id": "NC-02",
+      "title": "Содержание",
+      "template": "ippd-roaes-p0010",
+      "section": "Состав ИППД",
+      "requirement": "В состав ИППД должен быть включён: лист содержания.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.9 в",
+        "page": "11"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "sections",
+      "check": {
+        "type": "paragraph_present",
+        "pattern": "^\\s*содержание\\s*$",
+        "description": "лист содержания"
+      }
+    },
+    {
+      "id": "NC-03",
+      "title": "Раздел «Общие положения»",
+      "template": "ippd-roaes-p0010",
+      "section": "Состав ИППД",
+      "requirement": "В состав ИППД должен быть включён: раздел 1 «Общие положения».",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.9 г",
+        "page": "11"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "sections",
+      "check": {
+        "type": "paragraph_present",
+        "pattern": "^\\s*1\\.?\\s+общие\\s+положения",
+        "description": "раздел 1 «Общие положения»"
+      }
+    },
+    {
+      "id": "NC-04",
+      "title": "Раздел «План-график подготовки»",
+      "template": "ippd-roaes-p0010",
+      "section": "Состав ИППД",
+      "requirement": "В состав ИППД должен быть включён: раздел «План-график подготовки».",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.9 д",
+        "page": "11"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "sections",
+      "check": {
+        "type": "paragraph_present",
+        "pattern": "план\\s*-?\\s*график\\s+подготовки",
+        "description": "раздел «План-график подготовки»"
+      }
+    },
+    {
+      "id": "NC-05",
+      "title": "Раздел «Тематический план»",
+      "template": "ippd-roaes-p0010",
+      "section": "Состав ИППД",
+      "requirement": "В состав ИППД должен быть включён: раздел «Тематический план подготовки».",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.9 е",
+        "page": "11"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "sections",
+      "check": {
+        "type": "paragraph_present",
+        "pattern": "тематический\\s+план",
+        "description": "раздел «Тематический план подготовки»"
+      }
+    },
+    {
+      "id": "NC-06",
+      "title": "Раздел «Оценка обучения»",
+      "template": "ippd-roaes-p0010",
+      "section": "Состав ИППД",
+      "requirement": "В состав ИППД должен быть включён: раздел «Оценка обучения».",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.9 ж",
+        "page": "11"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "sections",
+      "check": {
+        "type": "paragraph_present",
+        "pattern": "оценка\\s+обучения",
+        "description": "раздел «Оценка обучения»"
+      }
+    },
+    {
+      "id": "NC-07",
+      "title": "Лист регистрации изменений",
+      "template": "ippd-roaes-p0010",
+      "section": "Состав ИППД",
+      "requirement": "В состав ИППД должен быть включён: лист регистрации изменений.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.9 и",
+        "page": "11"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "sections",
+      "check": {
+        "type": "paragraph_present",
+        "pattern": "лист\\s+регистрации\\s+изменений",
+        "description": "лист регистрации изменений"
+      }
+    },
+    {
+      "id": "NC-08",
+      "title": "Протокол входного контроля",
+      "template": "ippd-roaes-p0010",
+      "section": "Состав ИППД",
+      "requirement": "В состав ИППД должен быть включён: приложение «Протокол входного контроля уровня знаний».",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.9 л) 2",
+        "page": "11"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "sections",
+      "check": {
+        "type": "paragraph_present",
+        "pattern": "протокол\\s+входного\\s+контроля",
+        "description": "приложение «Протокол входного контроля уровня знаний»"
+      }
+    },
+    {
+      "id": "NC-09",
+      "title": "Протокол выходного контроля",
+      "template": "ippd-roaes-p0010",
+      "section": "Состав ИППД",
+      "requirement": "В состав ИППД должен быть включён: приложение «Протокол выходного контроля уровня знаний».",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.9 л) 3",
+        "page": "11"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "sections",
+      "check": {
+        "type": "paragraph_present",
+        "pattern": "протокол\\s+выходного\\s+контроля",
+        "description": "приложение «Протокол выходного контроля уровня знаний»"
+      }
+    },
+    {
+      "id": "NC-10",
+      "title": "Регистрационный номер ИППД",
+      "template": "ippd-roaes-p0010",
+      "section": "Титульный лист",
+      "requirement": "Регистрационный номер ИППД по форме ИППД.XX.XXX.X (XX — регистрационный № подразделения, XXX — название подразделения, X — порядковый № в журнале).",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "приложение В, форма титульного листа",
+        "page": "51"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "requisites",
+      "check": {
+        "type": "field_format",
+        "field": "registrationNumber",
+        "pattern": "^ИП{2}[ДП]\\.\\d{2}\\.[А-ЯЁ]+\\.\\d+$",
+        "forbid": "[ХX]{2,}",
+        "description": "регистрационный номер вида ИППД.27.ЦТАИ.733 без заполнителей"
+      }
+    },
+    {
+      "id": "NC-11",
+      "title": "ФИО работника на титульном листе",
+      "template": "ippd-roaes-p0010",
+      "section": "Титульный лист",
+      "requirement": "На титульном листе указываются фамилия, имя, отчество работника, проходящего подготовку.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "приложение В, форма титульного листа",
+        "page": "51"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "requisites",
+      "check": {
+        "type": "field_format",
+        "field": "traineeName",
+        "description": "фамилия, имя, отчество работника"
+      }
+    },
+    {
+      "id": "NC-12",
+      "title": "Должность на титульном листе",
+      "template": "ippd-roaes-p0010",
+      "section": "Титульный лист",
+      "requirement": "На титульном листе указывается наименование должности, на которую проводится подготовка.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "приложение В, форма титульного листа; п. 6.3.1",
+        "page": "51"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "requisites",
+      "check": {
+        "type": "field_format",
+        "field": "position",
+        "description": "наименование должности (с разрядом/группой, если есть деление)"
+      }
+    },
+    {
+      "id": "NC-20",
+      "title": "Таблица план-графика",
+      "template": "ippd-roaes-p0010",
+      "section": "2 План-график подготовки",
+      "requirement": "ИППД содержит план-график подготовки.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.9 д; приложение В",
+        "page": "55"
+      },
+      "severity": "critical",
+      "approval": "demo",
+      "category": "tables",
+      "check": {
+        "type": "table_present",
+        "table": "schedule"
+      }
+    },
+    {
+      "id": "NC-21",
+      "title": "Таблица тематического плана теоретической подготовки",
+      "template": "ippd-roaes-p0010",
+      "section": "3.1 Тематический план",
+      "requirement": "Тематический план разрабатывается для теоретической подготовки.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.10",
+        "page": "12"
+      },
+      "severity": "critical",
+      "approval": "demo",
+      "category": "tables",
+      "check": {
+        "type": "table_present",
+        "table": "theory"
+      }
+    },
+    {
+      "id": "NC-22",
+      "title": "Графы тематического плана теоретической подготовки",
+      "template": "ippd-roaes-p0010",
+      "section": "3.1 Тематический план",
+      "requirement": "Тематический план теоретической подготовки содержит перечень тем, форму, место, продолжительность обучения, ответственного, УММ и отметку о проведённом обучении.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.10.1",
+        "page": "12"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "tables",
+      "check": {
+        "type": "table_structure",
+        "table": "theory",
+        "columns": [
+          "number",
+          "title",
+          "form",
+          "place",
+          "hours",
+          "materials",
+          "responsible",
+          "mark"
+        ]
+      }
+    },
+    {
+      "id": "NC-23",
+      "title": "Графы тематического плана стажировки",
+      "template": "ippd-roaes-p0010",
+      "section": "Тематический план стажировки",
+      "requirement": "Тематический план стажировки содержит перечень тем, место и продолжительность, ответственного и отметку о проведении.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.17",
+        "page": "13"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "tables",
+      "check": {
+        "type": "table_structure",
+        "table": "internship",
+        "columns": [
+          "number",
+          "title",
+          "place",
+          "hours",
+          "responsible",
+          "mark"
+        ]
+      }
+    },
+    {
+      "id": "NC-30",
+      "title": "Заполнение граф тем теоретической подготовки",
+      "template": "ippd-roaes-p0010",
+      "section": "3.1 Тематический план",
+      "requirement": "Для каждой темы указаны форма, место, продолжительность обучения, ответственный и УММ.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.10.1",
+        "page": "12"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "cells",
+      "check": {
+        "type": "cells_filled",
+        "table": "theory",
+        "columns": [
+          "form",
+          "place",
+          "hours",
+          "materials",
+          "responsible"
+        ],
+        "rows": "leaf"
+      }
+    },
+    {
+      "id": "NC-31",
+      "title": "Заполнение граф тем практической подготовки",
+      "template": "ippd-roaes-p0010",
+      "section": "3.2 Тематический план",
+      "requirement": "Для каждой темы практической подготовки указаны форма, место/ТСО, продолжительность, ответственный и УММ.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.10.1",
+        "page": "12"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "cells",
+      "check": {
+        "type": "cells_filled",
+        "table": "practice",
+        "columns": [
+          "form",
+          "place",
+          "hours",
+          "materials",
+          "responsible"
+        ],
+        "rows": "leaf"
+      }
+    },
+    {
+      "id": "NC-32",
+      "title": "Заполнение граф стажировки",
+      "template": "ippd-roaes-p0010",
+      "section": "Тематический план стажировки",
+      "requirement": "Для каждой темы стажировки указаны место, продолжительность и ответственный.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.17",
+        "page": "13"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "cells",
+      "check": {
+        "type": "cells_filled",
+        "table": "internship",
+        "columns": [
+          "place",
+          "hours",
+          "responsible"
+        ],
+        "rows": "leaf"
+      }
+    },
+    {
+      "id": "NC-33",
+      "title": "Календарные сроки в план-графике",
+      "template": "ippd-roaes-p0010",
+      "section": "2 План-график подготовки",
+      "requirement": "Для каждого мероприятия план-графика указаны календарные сроки.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "приложение В, форма план-графика",
+        "page": "55"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "cells",
+      "check": {
+        "type": "cells_filled",
+        "table": "schedule",
+        "columns": [
+          "dates"
+        ],
+        "rows": "leaf"
+      }
+    },
+    {
+      "id": "NC-40",
+      "title": "Формат дат в план-графике",
+      "template": "ippd-roaes-p0010",
+      "section": "2 План-график подготовки",
+      "requirement": "Даты записываются в формате ДД.ММ.ГГГГ.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "приложение В, форма план-графика",
+        "page": "55",
+        "note": "формат даты в П.00.10 явно не задан; принят по образцам ИППД — требует подтверждения"
+      },
+      "severity": "minor",
+      "approval": "demo",
+      "category": "dates",
+      "check": {
+        "type": "dates_format",
+        "table": "schedule",
+        "column": "dates",
+        "format": "DD.MM.YYYY"
+      }
+    },
+    {
+      "id": "NC-50",
+      "title": "Нумерация тем теоретической подготовки",
+      "template": "ippd-roaes-p0010",
+      "section": "3.1 Тематический план",
+      "requirement": "Курсы, разделы и темы нумеруются иерархически без пропусков и повторов.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "приложение В, форма тематического плана",
+        "page": "56",
+        "note": "требование выведено из формы, явной нормы нумерации нет"
+      },
+      "severity": "minor",
+      "approval": "demo",
+      "category": "numbering",
+      "check": {
+        "type": "numbering",
+        "table": "theory"
+      }
+    },
+    {
+      "id": "NC-51",
+      "title": "Нумерация план-графика",
+      "template": "ippd-roaes-p0010",
+      "section": "2 План-график подготовки",
+      "requirement": "Мероприятия план-графика нумеруются иерархически без пропусков и повторов.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "приложение В, форма план-графика",
+        "page": "55",
+        "note": "требование выведено из формы"
+      },
+      "severity": "minor",
+      "approval": "demo",
+      "category": "numbering",
+      "check": {
+        "type": "numbering",
+        "table": "schedule"
+      }
+    },
+    {
+      "id": "NC-52",
+      "title": "Нумерация тем стажировки",
+      "template": "ippd-roaes-p0010",
+      "section": "Тематический план стажировки",
+      "requirement": "Темы стажировки нумеруются иерархически без пропусков и повторов.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "приложение В",
+        "page": "58",
+        "note": "требование выведено из формы"
+      },
+      "severity": "minor",
+      "approval": "demo",
+      "category": "numbering",
+      "check": {
+        "type": "numbering",
+        "table": "internship"
+      }
+    },
+    {
+      "id": "NC-60",
+      "title": "Обозначения УММ установленной системе",
+      "template": "ippd-roaes-p0010",
+      "section": "3 Тематический план; Библиография",
+      "requirement": "При нормоконтроле проверяется соответствие обозначений УММ установленной системе.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 9.1.6",
+        "page": "20",
+        "note": "шаблон обозначения выведен из примеров П.00.10 (с. 50) и образцов; сама система обозначений в материалах не приведена"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "designations",
+      "check": {
+        "type": "designation_format",
+        "pattern": "^(I|II|III|IV|V)\\.К\\d+\\.Т\\d+\\.(УМСИ|ПАЗ|ППЗ|УП|ДО|ПДО|КУМ|МР|Р|ЛМ|ПИ)\\.[А-ЯЁ][А-ЯЁа-яё]*\\.\\d{4}\\.\\d{4}$",
+        "scope": "both",
+        "description": "обозначение вида I.К1.Т13.УМСИ.ООП.3591.2024: кириллица, точки без пробелов"
+      }
+    },
+    {
+      "id": "NC-61",
+      "title": "Соответствие вида УММ форме обучения",
+      "template": "ippd-roaes-p0010",
+      "section": "3 Тематический план",
+      "requirement": "Сп — УМСИ, УП, ДО, КУМ, МР; А — ПАЗ; ПрЗ — ППЗ, Р; Конс — документы-первоисточники.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 13.1; п. 9.1.6",
+        "page": "27"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "form-material",
+      "check": {
+        "type": "form_material_match",
+        "mapping": {
+          "Сп": [
+            "УМСИ",
+            "УП",
+            "ДО",
+            "КУМ",
+            "МР"
+          ],
+          "А": [
+            "ПАЗ"
+          ],
+          "ПрЗ": [
+            "ППЗ",
+            "Р"
+          ],
+          "Конс": []
+        }
+      }
+    },
+    {
+      "id": "NC-62",
+      "title": "Ссылки на библиографию",
+      "template": "ippd-roaes-p0010",
+      "section": "3 Тематический план; Библиография",
+      "requirement": "В графе «Учебные материалы» указывается регистрационный номер УММ и в квадратных скобках порядковый номер в «Библиографии» либо номер и наименование УММ.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "приложение В, примечание 18; приложение Б, примечание 7 и «Библиография»",
+        "page": "99"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "bibliography",
+      "check": {
+        "type": "bibliography_crossref",
+        "requireSequential": true,
+        "reportUnused": true
+      }
+    },
+    {
+      "id": "NC-63",
+      "title": "Примечание об актуальности ссылочных документов",
+      "template": "ippd-roaes-p0010",
+      "section": "Библиография",
+      "requirement": "После перечня УММ рекомендуется приводить примечание об актуальности ссылочных документов.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "приложение Б, «Библиография», примечание 2",
+        "page": "50",
+        "note": "рекомендация"
+      },
+      "severity": "info",
+      "approval": "demo",
+      "category": "bibliography",
+      "check": {
+        "type": "paragraph_present",
+        "pattern": "целесообразно\\s+проверить\\s+актуальность",
+        "description": "примечание «При использовании настоящей программы целесообразно проверить актуальность…»"
+      }
+    },
+    {
+      "id": "NC-90",
+      "title": "Оформление страниц",
+      "template": "ippd-roaes-p0010",
+      "section": "Документ целиком",
+      "requirement": "Оформление страниц (поля, шрифт, колонтитулы, расположение реквизитов) соответствует форме.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "приложение В; раздел 13",
+        "page": "51"
+      },
+      "severity": "minor",
+      "approval": "demo",
+      "category": "manual-layout",
+      "check": {
+        "type": "manual",
+        "instruction": "Сверить оформление страниц по распечатке или PDF: у приложения нет достоверного источника о реальном отображении страницы."
+      }
+    },
+    {
+      "id": "NC-91",
+      "title": "Даты и подписи",
+      "template": "ippd-roaes-p0010",
+      "section": "Титульный лист; лист согласования; «РАЗРАБОТАНО»",
+      "requirement": "Наличие дат и подписей разработчика; подлинность подписей.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 9.1.6",
+        "page": "20"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "manual-layout",
+      "check": {
+        "type": "manual",
+        "instruction": "Проверить наличие и подлинность подписей и дат по оригиналу или ЕОСДО: подлинность подписи по DOCX не устанавливается."
+      }
+    },
+    {
+      "id": "NC-92",
+      "title": "Соответствие ИППД программе подготовки на должность",
+      "template": "ippd-roaes-p0010",
+      "section": "3 Тематический план",
+      "requirement": "Содержание тематического плана ИППД соответствует программе подготовки на должность (ППД).",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 9.1.6; п. 6.2",
+        "page": "20"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "manual-layout",
+      "check": {
+        "type": "manual",
+        "instruction": "Сверить темы и объёмы с актуальной ППД — экспертная проверка."
+      }
+    },
+    {
+      "id": "NC-93",
+      "title": "Комплектность пакета на согласование",
+      "template": "ippd-roaes-p0010",
+      "section": "Пакет документов",
+      "requirement": "К проекту ИППД приложены ОРД, ДИ/КХ, сканы ППД, ИОТ, ПСОТ, ПР.ИД, перечень обучения, протокол входного контроля.",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 9.1.3; п. 9.1.6",
+        "page": "19"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "manual-layout",
+      "check": {
+        "type": "manual",
+        "instruction": "Проверить комплектность пакета по п. 9.1.3."
+      }
+    },
+    {
+      "id": "NC-94",
+      "title": "Объём курса «Культура безопасности»",
+      "template": "ippd-roaes-p0010",
+      "section": "3 Тематический план",
+      "requirement": "Не менее 6 ч (руководящий, оперативный, инструкторский персонал) или не менее 4 ч (другие должности) по курсу «Культура безопасности».",
+      "source": {
+        "document": "П.00.10 изм.31",
+        "clause": "п. 6.19",
+        "page": "13"
+      },
+      "severity": "major",
+      "approval": "demo",
+      "category": "manual-layout",
+      "check": {
+        "type": "manual",
+        "instruction": "Подсчитать часы курса «Культура безопасности» с учётом категории персонала."
+      }
+    }
+  ]
+}

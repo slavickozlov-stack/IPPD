@@ -1,0 +1,80 @@
+{
+  "name": "ippd-control",
+  "productName": "ИППД Контроль",
+  "version": "0.1.0",
+  "description": "MVP: проверка актуальности УММ и формализуемый нормоконтроль ИППД (кейс Ростовской АЭС)",
+  "private": true,
+  "main": "out/main/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "start": "electron-vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "demo:generate": "tsx scripts/make-demo.ts",
+    "cli": "tsx scripts/cli.ts",
+    "e2e": "npm run build && node e2e/smoke.mjs",
+    "dist": "npm run build && electron-builder --dir",
+    "schema": "tsx scripts/write-schema.ts",
+    "demo:pdf": "electron scripts/make-umm-pdf.cjs"
+  },
+  "dependencies": {
+    "@xmldom/xmldom": "^0.9.12",
+    "ajv": "^8.20.0",
+    "jszip": "^3.10.2",
+    "pdfjs-dist": "^6.5.438",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "docx": "^9.15.3",
+    "electron": "^45.2.3",
+    "electron-builder": "^26.18.0",
+    "electron-vite": "^6.0.0",
+    "playwright": "^1.65.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.7",
+    "vitest": "^5.1.0"
+  },
+  "build": {
+    "appId": "ru.case.ippd-control",
+    "productName": "ИППД Контроль",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "out/**",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "profiles",
+        "to": "profiles"
+      },
+      {
+        "from": "templates",
+        "to": "templates"
+      },
+      {
+        "from": "demo",
+        "to": "demo"
+      }
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}
